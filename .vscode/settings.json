@@ -1,0 +1,32 @@
+{
+    "folder-color.pathColors": [
+        {
+            "folderPath": "Java_Script_Swabhav_Training\\07_Counter\\",
+            "badge": "🔖"
+        },
+        {
+            "folderPath": "Java_Script_Swabhav_Training\\09_RandonNumberGenerator\\",
+            "badge": "🔖"
+        },
+        {
+            "folderPath": "Java_Script_Swabhav_Training\\11_CheckedProperty\\",
+            "badge": "🔖"
+        },
+        {
+            "folderPath": "Java_Script_Swabhav_Training\\18_NumberGuessingGame\\",
+            "badge": "🔖"
+        },
+        {
+            "folderPath": "Java_Script_Swabhav_Training\\20_TempratureConverter\\",
+            "badge": "🔖"
+        },
+        {
+            "folderPath": "Java_Script_Swabhav_Training\\23_DiceRollerGame\\",
+            "badge": "🔖"
+        },
+        {
+            "folderPath": "Java_Script_Swabhav_Training\\24_RandomPasswordGenerator\\",
+            "badge": "🔖"
+        }
+    ]
+}
