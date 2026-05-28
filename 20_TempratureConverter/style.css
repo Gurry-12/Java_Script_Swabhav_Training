@@ -18,7 +18,7 @@ form{
 }
 
 #textBox{
-    width: 50%;
+    width: 70%;
     text-align: center;
     font-size: 2em;
     border: 2px solid hsla(0, 0%, 0%, 0.8);
@@ -49,4 +49,17 @@ button:hover{
 #result{
     font-size: 1.75em;
     font-weight: bold;
+}
+
+form label {
+    display: inline-block;
+    text-align: left;
+    width: 100%; 
+    max-width: 260px; 
+    margin: 4px auto; 
+    font-size: 1.3rem; 
+}
+
+form input[type="radio"] {
+    margin-right: 10px; 
 }
