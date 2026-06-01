@@ -1,0 +1,725 @@
+/* ==========================================================================
+   DESIGN SYSTEM - VARIABLES & TOKENS
+   ========================================================================== */
+:root {
+  /* Font Families */
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+  
+  /* Transition Speeds */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Theme Variables (Default) */
+[data-theme="dark"] {
+  --bg-gradient: radial-gradient(circle at top left, hsl(220, 35%, 11%), hsl(250, 45%, 8%));
+  --card-bg: rgba(18, 20, 30, 0.7);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 100px rgba(99, 102, 241, 0.06);
+  
+  /* Text Colors */
+  --text-primary: hsl(0, 0%, 95%);
+  --text-secondary: hsl(230, 15%, 75%);
+  --text-muted: hsl(230, 10%, 45%);
+  
+  /* Accents */
+  --accent: hsl(255, 75%, 62%);
+  --accent-hover: hsl(255, 80%, 68%);
+  --accent-glow: rgba(124, 58, 237, 0.3);
+  
+  --color-principal: hsl(225, 75%, 60%);
+  --color-interest: hsl(150, 75%, 52%);
+  
+  /* UI Colors */
+  --btn-bg: rgba(255, 255, 255, 0.04);
+  --btn-hover: rgba(255, 255, 255, 0.09);
+  
+  --display-bg: rgba(10, 11, 20, 0.4);
+  --input-bg: rgba(255, 255, 255, 0.03);
+  --table-border: rgba(255, 255, 255, 0.04);
+  
+  /* Decorative Blobs */
+  --blob-1-bg: hsl(255, 75%, 28%);
+  --blob-2-bg: hsl(210, 70%, 25%);
+}
+
+/* Light Theme Variables */
+[data-theme="light"] {
+  --bg-gradient: radial-gradient(circle at top left, hsl(230, 30%, 94%), hsl(250, 30%, 88%));
+  --card-bg: rgba(255, 255, 255, 0.65);
+  --card-border: rgba(0, 0, 0, 0.06);
+  --card-shadow: 0 30px 60px rgba(0, 0, 0, 0.08), 0 0 100px rgba(99, 102, 241, 0.03);
+  
+  /* Text Colors */
+  --text-primary: hsl(230, 30%, 15%);
+  --text-secondary: hsl(230, 15%, 45%);
+  --text-muted: hsl(230, 10%, 65%);
+  
+  /* Accents */
+  --accent: hsl(255, 75%, 62%);
+  --accent-hover: hsl(255, 80%, 68%);
+  --accent-glow: rgba(124, 58, 237, 0.25);
+  
+  --color-principal: hsl(225, 75%, 52%);
+  --color-interest: hsl(150, 75%, 38%);
+  
+  /* UI Colors */
+  --btn-bg: rgba(0, 0, 0, 0.03);
+  --btn-hover: rgba(0, 0, 0, 0.07);
+  
+  --display-bg: rgba(255, 255, 255, 0.4);
+  --input-bg: rgba(0, 0, 0, 0.02);
+  --table-border: rgba(0, 0, 0, 0.03);
+  
+  /* Decorative Blobs */
+  --blob-1-bg: hsl(255, 80%, 78%);
+  --blob-2-bg: hsl(210, 80%, 75%);
+}
+
+/* ==========================================================================
+   GLOBAL RESET & BODY LAYOUT
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  overflow: hidden;
+  position: relative;
+  transition: background var(--transition-slow);
+}
+
+/* Background Glowing Ambient Blobs */
+.background-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  width: 40vw;
+  height: 40vw;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.3;
+  transition: background var(--transition-slow);
+}
+
+.blob-1 {
+  background: var(--blob-1-bg);
+  top: -10%;
+  left: -10%;
+}
+
+.blob-2 {
+  background: var(--blob-2-bg);
+  bottom: -10%;
+  right: -10%;
+}
+
+/* ==========================================================================
+   CALCULATOR CONTAINER & CARD
+   ========================================================================== */
+.calculator-container {
+  z-index: 1;
+  position: relative;
+  padding: 20px;
+  width: 100%;
+  max-width: 415px;
+}
+
+#calculator-card {
+  width: 100%;
+  background: var(--card-bg);
+  backdrop-filter: blur(25px) saturate(120%);
+  -webkit-backdrop-filter: blur(25px) saturate(120%);
+  border: 1px solid var(--card-border);
+  border-radius: 35px;
+  box-shadow: var(--card-shadow);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 94vh;
+  overflow-y: auto;
+  position: relative;
+  transition: background var(--transition-slow), border var(--transition-slow), box-shadow var(--transition-slow);
+}
+
+/* custom scrollbar for overall card overflow */
+#calculator-card::-webkit-scrollbar {
+  width: 4px;
+}
+#calculator-card::-webkit-scrollbar-track {
+  background: transparent;
+}
+#calculator-card::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 10px;
+}
+
+/* ==========================================================================
+   TOOLBAR SECTION (HEADER)
+   ========================================================================== */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.title-icon {
+  width: 22px;
+  height: 22px;
+  color: var(--accent);
+}
+
+.toolbar-actions {
+  display: flex;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.icon-btn:hover {
+  background: var(--btn-hover);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.icon-btn:active {
+  transform: scale(0.95);
+}
+
+.icon-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Theme Toggle Icons */
+#theme-toggle .moon-icon {
+  display: none;
+}
+
+[data-theme="light"] #theme-toggle .sun-icon {
+  display: none;
+}
+
+[data-theme="light"] #theme-toggle .moon-icon {
+  display: block;
+}
+
+/* ==========================================================================
+   MODE TOGGLE TABS (SIMPLE VS COMPOUND)
+   ========================================================================== */
+.tabs-container {
+  display: flex;
+  background: var(--display-bg);
+  border-radius: 16px;
+  padding: 4px;
+  border: 1px solid var(--card-border);
+  transition: background var(--transition-slow);
+}
+
+.tab-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  height: 36px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+}
+
+.tab-btn.active {
+  background: var(--btn-hover);
+  color: var(--text-primary);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ==========================================================================
+   INPUTS PANEL SECTION (SLIDERS & INPUTS)
+   ========================================================================== */
+.inputs-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-header label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Sync Input Box Wrapper */
+.number-wrapper {
+  display: flex;
+  align-items: center;
+  background: var(--input-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 0 10px;
+  height: 36px;
+  transition: border var(--transition-fast);
+}
+
+.number-wrapper:focus-within {
+  border-color: var(--accent);
+}
+
+.currency-symbol {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-right: 4px;
+}
+
+.number-wrapper input {
+  width: 80px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+.text-input-small {
+  width: 70px;
+  height: 36px;
+  background: var(--input-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+  transition: border var(--transition-fast);
+}
+
+.text-input-small:focus {
+  border-color: var(--accent);
+}
+
+/* Remove spin indicators */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Sleek Premium Range Sliders styling */
+.range-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background: var(--input-bg);
+  border: 1px solid var(--card-border);
+  outline: none;
+  transition: background var(--transition-slow);
+}
+
+/* Thumb details */
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+
+.range-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.range-slider::-moz-range-thumb:hover {
+  transform: scale(1.25);
+}
+
+/* Compounding Frequency Dropdown Select */
+.dropdown-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.unit-select {
+  width: 100%;
+  height: 38px;
+  background-color: var(--input-bg);
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23888899' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 0 30px 0 12px;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border var(--transition-fast), background-color var(--transition-fast);
+}
+
+.unit-select:focus {
+  border-color: var(--accent);
+  background-color: var(--btn-hover);
+}
+
+.unit-select option {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+}
+
+/* Collapsible frequency select layout when tab switches */
+#frequency-select-group {
+  max-height: 80px;
+  opacity: 1;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+[data-mode="simple"] #frequency-select-group {
+  max-height: 0;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   PRINCIPAL VS INTEREST SEGMENTED RATIO BAR
+   ========================================================================== */
+.ratio-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ratio-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  text-align: left;
+}
+
+/* Horizontal segmented bar */
+.ratio-bar-container {
+  width: 100%;
+}
+
+.ratio-bar {
+  height: 12px;
+  background: var(--input-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  display: flex;
+  overflow: hidden;
+  transition: background var(--transition-slow);
+}
+
+.segment {
+  height: 100%;
+  transition: width var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.segment.principal {
+  background: linear-gradient(to right, var(--accent-glow), var(--color-principal));
+  filter: drop-shadow(0 0 2px rgba(59, 130, 246, 0.2));
+}
+
+.segment.interest {
+  background: linear-gradient(to right, var(--color-interest), hsl(150, 75%, 65%));
+  filter: drop-shadow(0 0 2px rgba(16, 185, 129, 0.2));
+}
+
+/* Ratio label chips below */
+.ratio-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+}
+
+.label-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot.principal { background: var(--color-principal); }
+.dot.interest { background: var(--color-interest); }
+
+/* ==========================================================================
+   RESULT CARD METRICS GRID
+   ========================================================================== */
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.result-card {
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: center;
+  transition: background var(--transition-slow), border var(--transition-slow);
+}
+
+.result-card.secondary {
+  background: var(--stat-bg);
+}
+
+.result-card.primary {
+  background: rgba(99, 102, 241, 0.03);
+  border-color: var(--accent-glow);
+}
+
+.res-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+}
+
+.res-val {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-feature-settings: "tnum";
+}
+
+.result-card.primary .res-val {
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   YEAR-BY-YEAR GROWTH TABLE COLLAPSIBLE ACCORDION
+   ========================================================================== */
+.growth-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--card-border);
+  padding-top: 18px;
+  transition: border var(--transition-slow);
+}
+
+.accordion-header {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  transition: color var(--transition-fast);
+}
+
+.accordion-header:hover {
+  color: var(--text-primary);
+}
+
+.accordion-arrow {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--transition-normal);
+}
+
+.accordion-header.active .accordion-arrow {
+  transform: rotate(180deg);
+}
+
+/* Collapsible drawer container */
+.growth-drawer {
+  overflow: hidden;
+  max-height: 200px;
+  opacity: 1;
+  transition: max-height var(--transition-normal), opacity var(--transition-normal), margin var(--transition-normal);
+}
+
+.growth-drawer.collapsed {
+  max-height: 0;
+  opacity: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.table-container {
+  width: 100%;
+  max-height: 180px;
+  overflow-y: auto;
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  background: var(--stat-bg);
+  transition: border var(--transition-slow);
+}
+
+/* Custom scrollbar for amortization table */
+.table-container::-webkit-scrollbar {
+  width: 4px;
+}
+.table-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.table-container::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+th, td {
+  padding: 10px 14px;
+}
+
+th {
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  background: var(--btn-hover);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+td {
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--table-border);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:nth-child(even) {
+  background: var(--table-border);
+}
+
+td :last-child, th:last-child {
+  text-align: right;
+}
+
+td:nth-child(2), th:nth-child(2) {
+  text-align: right;
+  color: var(--color-interest);
+}
+td:nth-child(3) {
+  color: var(--accent);
+}

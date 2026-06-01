@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-mode="compound">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AeroCalc - Ambient Interest Dashboard</title>
+    <!-- Google Fonts for premium modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <!-- Lucide icons for beautiful interface icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Background blurred colorful blobs -->
+    <div class="background-decorations">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+
+    <div class="calculator-container">
+      <!-- Main Dashboard Card -->
+      <div id="calculator-card">
+        <!-- Top Toolbar -->
+        <div class="toolbar">
+          <div class="app-title">
+            <i data-lucide="trending-up" class="title-icon"></i>
+            <span>AeroCalc</span>
+          </div>
+          
+          <div class="toolbar-actions">
+            <!-- Theme Toggle -->
+            <button id="theme-toggle" class="icon-btn" title="Toggle Theme" aria-label="Toggle Theme">
+              <i data-lucide="sun" class="sun-icon"></i>
+              <i data-lucide="moon" class="moon-icon"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mode Toggle Tabs (Simple vs Compound) -->
+        <div class="tabs-container">
+          <button id="tab-simple" class="tab-btn">Simple Interest</button>
+          <button id="tab-compound" class="tab-btn active">Compound Interest</button>
+        </div>
+
+        <!-- Inputs Panel Section (Sliders + Textboxes) -->
+        <div class="inputs-section">
+          <!-- Input 1: Principal -->
+          <div class="input-group">
+            <div class="input-header">
+              <label for="principal-text">Principal Amount</label>
+              <div class="number-wrapper">
+                <span class="currency-symbol">$</span>
+                <input type="number" id="principal-text" value="10000" min="500" max="1000000" step="500" />
+              </div>
+            </div>
+            <input type="range" id="principal-slider" class="range-slider" value="10000" min="500" max="250000" step="500" />
+          </div>
+
+          <!-- Input 2: Rate -->
+          <div class="input-group">
+            <div class="input-header">
+              <label for="rate-text">Annual Rate (%)</label>
+              <input type="number" id="rate-text" value="7.5" min="0.1" max="30" step="0.1" class="text-input-small" />
+            </div>
+            <input type="range" id="rate-slider" class="range-slider" value="7.5" min="0.1" max="25" step="0.1" />
+          </div>
+
+          <!-- Input 3: Time -->
+          <div class="input-group">
+            <div class="input-header">
+              <label for="time-text">Time Period (Years)</label>
+              <input type="number" id="time-text" value="10" min="1" max="50" step="1" class="text-input-small" />
+            </div>
+            <input type="range" id="time-slider" class="range-slider" value="10" min="1" max="30" step="1" />
+          </div>
+
+          <!-- Input 4: Compounding Frequency (Only for Compound Mode) -->
+          <div class="input-group" id="frequency-select-group">
+            <label for="frequency-select" class="dropdown-label">Compounding Frequency</label>
+            <select id="frequency-select" class="unit-select">
+              <option value="1">Annually (1/year)</option>
+              <option value="2">Semi-Annually (2/year)</option>
+              <option value="4" selected>Quarterly (4/year)</option>
+              <option value="12">Monthly (12/year)</option>
+              <option value="365">Daily (365/year)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Visual Principal vs Interest Segmented Progress Ratio Bar -->
+        <div class="ratio-section">
+          <div class="ratio-header">
+            <span class="ratio-title">Investment Ratio</span>
+          </div>
+          <div class="ratio-bar-container">
+            <div class="ratio-bar">
+              <div id="principal-segment" class="segment principal" style="width: 70%;"></div>
+              <div id="interest-segment" class="segment interest" style="width: 30%;"></div>
+            </div>
+          </div>
+          <div class="ratio-labels">
+            <div class="label-item">
+              <span class="dot principal"></span>
+              <span>Principal: <strong id="ratio-principal-pct">70%</strong></span>
+            </div>
+            <div class="label-item">
+              <span class="dot interest"></span>
+              <span>Interest: <strong id="ratio-interest-pct">30%</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Result Displays Grid -->
+        <div class="results-grid">
+          <div class="result-card secondary">
+            <span class="res-label">Interest Earned</span>
+            <span id="interest-display" class="res-val">$4,200.00</span>
+          </div>
+          
+          <div class="result-card primary">
+            <span class="res-label">Total Balance</span>
+            <span id="balance-display" class="res-val">$14,200.00</span>
+          </div>
+        </div>
+
+        <!-- Year-by-Year Growth Amortization Accordion -->
+        <div class="growth-accordion">
+          <button id="accordion-toggle" class="accordion-header">
+            <span>Show Growth Schedule</span>
+            <i data-lucide="chevron-down" class="accordion-arrow"></i>
+          </button>
+          
+          <div id="growth-drawer" class="growth-drawer collapsed">
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Year</th>
+                    <th>Interest</th>
+                    <th>Total Balance</th>
+                  </tr>
+                </thead>
+                <tbody id="growth-table-body">
+                  <!-- Dynamic rows generated here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chronos - Soothing Modern Stopwatch</title>
+    <!-- Google Fonts for premium modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <!-- Lucide icons for beautiful interface icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Background blurred colorful blobs -->
+    <div class="background-decorations">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+
+    <div class="stopwatch-container">
+      <!-- Main Card -->
+      <div id="stopwatch-card">
+        <!-- Top Toolbar -->
+        <div class="toolbar">
+          <div class="app-title">
+            <i data-lucide="timer" class="title-icon"></i>
+            <span>Chronos</span>
+          </div>
+          <div class="toolbar-actions">
+            <button id="theme-toggle" class="icon-btn" title="Toggle Theme" aria-label="Toggle Theme">
+              <i data-lucide="sun" class="sun-icon"></i>
+              <i data-lucide="moon" class="moon-icon"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- SVG Timing Progress Circle -->
+        <div class="visual-timer-container">
+          <svg class="progress-ring" viewBox="0 0 220 220">
+            <circle class="progress-ring-track" cx="110" cy="110" r="95" />
+            <circle class="progress-ring-indicator" cx="110" cy="110" r="95" id="ring-indicator" />
+          </svg>
+          
+          <!-- Timer Display Content in Circle Center -->
+          <div class="timer-content">
+            <div id="display" class="timer-digits">00:00:00</div>
+            <div id="display-ms" class="timer-ms">.00</div>
+          </div>
+        </div>
+
+        <!-- Mini Stats Bar -->
+        <div id="stats-bar" class="stats-bar hidden">
+          <div class="stat-card">
+            <span class="stat-label">Fastest Lap</span>
+            <span id="fastest-lap-val" class="stat-val">--:--.--</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Slowest Lap</span>
+            <span id="slowest-lap-val" class="stat-val">--:--.--</span>
+          </div>
+        </div>
+
+        <!-- Controls Section -->
+        <div class="controls-container">
+          <!-- Lap/Reset Button -->
+          <button id="lap-reset-btn" class="control-btn secondary-btn" disabled>
+            <i data-lucide="plus" class="btn-icon"></i>
+            <span id="lap-reset-text">Lap</span>
+          </button>
+
+          <!-- Start/Stop Button -->
+          <button id="start-stop-btn" class="control-btn primary-btn start-state">
+            <i data-lucide="play" class="btn-icon play-icon"></i>
+            <i data-lucide="pause" class="btn-icon pause-icon"></i>
+            <span id="start-stop-text">Start</span>
+          </button>
+        </div>
+
+        <!-- Lap Tracker Table/List -->
+        <div class="laps-container">
+          <div class="laps-header">
+            <span>Lap</span>
+            <span>Split Time</span>
+            <span>Overall Time</span>
+          </div>
+          <div id="laps-list" class="laps-list">
+            <div class="empty-laps">No laps recorded yet</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

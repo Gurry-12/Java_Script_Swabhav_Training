@@ -1,24 +1,650 @@
+/* ==========================================================================
+   DESIGN SYSTEM - VARIABLES & TOKENS
+   ========================================================================== */
+:root {
+  /* Font Family */
+  --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* Transition Speeds */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Theme Variables (Default) */
+[data-theme="dark"] {
+  --bg-gradient: radial-gradient(circle at top left, hsl(220, 35%, 11%), hsl(250, 45%, 8%));
+  --card-bg: rgba(18, 20, 30, 0.7);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 100px rgba(99, 102, 241, 0.06);
+  
+  /* Text Colors */
+  --text-primary: hsl(0, 0%, 95%);
+  --text-secondary: hsl(230, 15%, 75%);
+  --text-muted: hsl(230, 10%, 45%);
+  
+  /* Moods */
+  --mood-neutral: hsl(0, 0%, 92%);
+  --mood-neutral-glow: rgba(255, 255, 255, 0.2);
+  
+  --mood-positive: hsl(150, 75%, 55%);
+  --mood-positive-glow: rgba(16, 185, 129, 0.3);
+  
+  --mood-negative: hsl(10, 80%, 65%);
+  --mood-negative-glow: rgba(239, 68, 68, 0.3);
+  
+  /* UI Elements */
+  --btn-bg: rgba(255, 255, 255, 0.04);
+  --btn-hover: rgba(255, 255, 255, 0.09);
+  
+  --btn-inc-bg: linear-gradient(135deg, hsl(150, 70%, 45%), hsl(160, 70%, 40%));
+  --btn-inc-hover: linear-gradient(135deg, hsl(150, 75%, 52%), hsl(160, 75%, 47%));
+  --btn-inc-glow: 0 8px 20px rgba(16, 185, 129, 0.3);
+  
+  --btn-dec-bg: linear-gradient(135deg, hsl(10, 75%, 58%), hsl(0, 75%, 53%));
+  --btn-dec-hover: linear-gradient(135deg, hsl(10, 80%, 63%), hsl(0, 80%, 58%));
+  --btn-dec-glow: 0 8px 20px rgba(239, 68, 68, 0.25);
+  
+  --display-bg: rgba(10, 11, 20, 0.4);
+  --input-bg: rgba(255, 255, 255, 0.03);
+  --log-item-border: rgba(255, 255, 255, 0.04);
+  
+  /* Decorative Blobs */
+  --blob-1-bg: hsl(255, 75%, 28%);
+  --blob-2-bg: hsl(210, 70%, 25%);
+}
+
+/* Light Theme Variables */
+[data-theme="light"] {
+  --bg-gradient: radial-gradient(circle at top left, hsl(220, 30%, 94%), hsl(250, 30%, 88%));
+  --card-bg: rgba(255, 255, 255, 0.65);
+  --card-border: rgba(0, 0, 0, 0.06);
+  --card-shadow: 0 30px 60px rgba(0, 0, 0, 0.08), 0 0 100px rgba(99, 102, 241, 0.03);
+  
+  /* Text Colors */
+  --text-primary: hsl(230, 30%, 15%);
+  --text-secondary: hsl(230, 15%, 45%);
+  --text-muted: hsl(230, 10%, 65%);
+  
+  /* Moods */
+  --mood-neutral: hsl(230, 25%, 25%);
+  --mood-neutral-glow: rgba(0, 0, 0, 0.1);
+  
+  --mood-positive: hsl(150, 75%, 38%);
+  --mood-positive-glow: rgba(16, 185, 129, 0.15);
+  
+  --mood-negative: hsl(10, 75%, 53%);
+  --mood-negative-glow: rgba(239, 68, 68, 0.15);
+  
+  /* UI Elements */
+  --btn-bg: rgba(0, 0, 0, 0.03);
+  --btn-hover: rgba(0, 0, 0, 0.07);
+  
+  --btn-inc-bg: linear-gradient(135deg, hsl(150, 65%, 42%), hsl(160, 65%, 37%));
+  --btn-inc-hover: linear-gradient(135deg, hsl(150, 70%, 48%), hsl(160, 70%, 43%));
+  --btn-inc-glow: 0 8px 20px rgba(16, 185, 129, 0.2);
+  
+  --btn-dec-bg: linear-gradient(135deg, hsl(10, 70%, 53%), hsl(0, 70%, 48%));
+  --btn-dec-hover: linear-gradient(135deg, hsl(10, 75%, 58%), hsl(0, 75%, 53%));
+  --btn-dec-glow: 0 8px 20px rgba(239, 68, 68, 0.18);
+  
+  --display-bg: rgba(255, 255, 255, 0.4);
+  --input-bg: rgba(0, 0, 0, 0.02);
+  --log-item-border: rgba(0, 0, 0, 0.03);
+  
+  /* Decorative Blobs */
+  --blob-1-bg: hsl(255, 80%, 78%);
+  --blob-2-bg: hsl(210, 80%, 75%);
+}
+
+/* ==========================================================================
+   GLOBAL RESET & BODY LAYOUT
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  overflow: hidden;
+  position: relative;
+  transition: background var(--transition-slow);
+}
+
+/* Background Glowing Ambient Blobs */
+.background-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  width: 40vw;
+  height: 40vw;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.3;
+  transition: background var(--transition-slow);
+}
+
+.blob-1 {
+  background: var(--blob-1-bg);
+  top: -10%;
+  left: -10%;
+}
+
+.blob-2 {
+  background: var(--blob-2-bg);
+  bottom: -10%;
+  right: -10%;
+}
+
+/* ==========================================================================
+   COUNTER CONTAINER & CARD
+   ========================================================================== */
+.counter-container {
+  z-index: 1;
+  position: relative;
+  padding: 20px;
+  width: 100%;
+  max-width: 360px;
+}
+
+#counter-card {
+  width: 100%;
+  background: var(--card-bg);
+  backdrop-filter: blur(25px) saturate(120%);
+  -webkit-backdrop-filter: blur(25px) saturate(120%);
+  border: 1px solid var(--card-border);
+  border-radius: 35px;
+  box-shadow: var(--card-shadow);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+  position: relative;
+  transition: background var(--transition-slow), border var(--transition-slow), box-shadow var(--transition-slow);
+}
+
+/* Limit Breach Visual Indicator */
+#counter-card.breach-flash {
+  animation: border-flash 0.4s ease-out;
+}
+
+@keyframes border-flash {
+  0%, 100% { border-color: var(--card-border); }
+  50% { border-color: var(--mood-negative); box-shadow: 0 0 25px var(--mood-negative-glow); }
+}
+
+/* ==========================================================================
+   TOOLBAR SECTION (HEADER)
+   ========================================================================== */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.title-icon {
+  width: 20px;
+  height: 20px;
+  color: hsl(255, 75%, 62%);
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.icon-btn:hover {
+  background: var(--btn-hover);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.icon-btn:active {
+  transform: scale(0.95);
+}
+
+.icon-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Theme Toggle Icons */
+#theme-toggle .moon-icon {
+  display: none;
+}
+
+[data-theme="light"] #theme-toggle .sun-icon {
+  display: none;
+}
+
+[data-theme="light"] #theme-toggle .moon-icon {
+  display: block;
+}
+
+/* ==========================================================================
+   STEP SIZE SELECTOR ROW
+   ========================================================================== */
+.step-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--display-bg);
+  padding: 8px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  transition: background var(--transition-slow);
+}
+
+.step-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.step-selector {
+  display: flex;
+  background: var(--input-bg);
+  border-radius: 10px;
+  padding: 2px;
+  border: 1px solid var(--card-border);
+}
+
+.step-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  width: 32px;
+  height: 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all var(--transition-fast);
+}
+
+.step-btn:hover {
+  color: var(--text-primary);
+}
+
+.step-btn.active {
+  background: var(--btn-hover);
+  color: var(--text-primary);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* ==========================================================================
+   COUNT DISPLAY PANEL & MOOD INDICATORS
+   ========================================================================== */
+.display-panel {
+  background: var(--display-bg);
+  border-radius: 24px;
+  padding: 30px 20px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 160px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: background var(--transition-slow);
+}
+
 #countLabel {
-    display: block;
-    text-align: center;
-    font-size: 10em;
-    font-family: Arial, Helvetica, sans-serif;
+  font-size: 5.5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -1.5px;
+  transition: color var(--transition-normal), text-shadow var(--transition-normal);
 }
 
-#btnContainer {
-    text-align: center;
+/* Mood Color Alignments */
+#countLabel.neutral {
+  color: var(--mood-neutral);
+  text-shadow: 0 0 15px var(--mood-neutral-glow);
 }
 
-.buttons {
-    padding: 10px 20px;
-    font-size: 1.5em;
-    color: white;
-    background-color: hsl(214, 100%, 74%);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.25s;
+#countLabel.positive {
+  color: var(--mood-positive);
+  text-shadow: 0 0 20px var(--mood-positive-glow);
 }
 
-.buttons:hover {
-    background-color: hsl(214, 100%, 56%);;
+#countLabel.negative {
+  color: var(--mood-negative);
+  text-shadow: 0 0 20px var(--mood-negative-glow);
+}
+
+/* Collapsible Warning Badge */
+.warning-badge {
+  position: absolute;
+  bottom: 12px;
+  background: var(--mood-negative);
+  color: hsl(0, 0%, 100%);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  box-shadow: var(--btn-dec-glow);
+  opacity: 0;
+  transform: translateY(5px);
+  transition: all var(--transition-normal);
+  pointer-events: none;
+}
+
+.warning-badge.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   COLLAPSIBLE SETTINGS DRAWER (BOUNDARIES)
+   ========================================================================== */
+.settings-drawer {
+  overflow: hidden;
+  max-height: 100px;
+  opacity: 1;
+  transition: max-height var(--transition-normal), opacity var(--transition-normal), margin var(--transition-normal);
+}
+
+.settings-drawer.collapsed {
+  max-height: 0;
+  opacity: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  background: var(--display-bg);
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  transition: background var(--transition-slow);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.input-group label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input-group input {
+  height: 38px;
+  background: var(--input-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 0 12px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  outline: none;
+  font-weight: 600;
+  transition: border var(--transition-fast), background var(--transition-fast);
+}
+
+.input-group input:focus {
+  border-color: hsl(255, 75%, 62%);
+  background: var(--btn-hover);
+}
+
+/* Remove spin buttons from number input */
+.input-group input::-webkit-outer-spin-button,
+.input-group input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ==========================================================================
+   ACTIONS BUTTONS PANEL
+   ========================================================================== */
+.actions-container {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+.action-btn {
+  height: 52px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background var(--transition-fast), color var(--transition-fast), 
+              box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.action-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Decrease Button */
+.dec-btn {
+  background: var(--btn-dec-bg);
+  color: hsl(0, 0%, 100%);
+}
+
+.dec-btn:hover {
+  background: var(--btn-dec-hover);
+  box-shadow: var(--btn-dec-glow);
+  transform: translateY(-2px);
+}
+
+/* Increase Button */
+.inc-btn {
+  background: var(--btn-inc-bg);
+  color: hsl(0, 0%, 100%);
+}
+
+.inc-btn:hover {
+  background: var(--btn-inc-hover);
+  box-shadow: var(--btn-inc-glow);
+  transform: translateY(-2px);
+}
+
+.dec-btn:active, .inc-btn:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: none;
+}
+
+/* Reset Button */
+.reset-btn {
+  background: var(--btn-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-primary);
+}
+
+.reset-btn:hover {
+  background: var(--btn-hover);
+  transform: translateY(-2px);
+}
+
+.reset-btn:active {
+  transform: translateY(1px) scale(0.95);
+}
+
+/* ==========================================================================
+   ACTIVITY LOG FEEDS
+   ========================================================================== */
+.logs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--card-border);
+  padding-top: 18px;
+  transition: border var(--transition-slow);
+}
+
+.logs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px;
+}
+
+.logs-header span {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+}
+
+.clear-logs-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: all var(--transition-fast);
+}
+
+.clear-logs-btn:hover {
+  color: var(--mood-negative);
+  background: var(--btn-hover);
+}
+
+.logs-list {
+  max-height: 120px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 2px;
+}
+
+/* scrollbar custom styling */
+.logs-list::-webkit-scrollbar {
+  width: 4px;
+}
+.logs-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.logs-list::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 10px;
+}
+
+.log-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: var(--btn-bg);
+  border: 1px solid var(--log-item-border);
+  font-size: 0.85rem;
+  font-weight: 500;
+  animation: slide-in 0.2s ease-out;
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.log-action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.log-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.log-badge.badge-inc {
+  background: rgba(16, 185, 129, 0.08);
+  color: var(--mood-positive);
+}
+
+.log-badge.badge-dec {
+  background: rgba(239, 68, 68, 0.08);
+  color: var(--mood-negative);
+}
+
+.log-badge.badge-reset {
+  background: rgba(99, 102, 241, 0.08);
+  color: hsl(225, 80%, 65%);
+}
+
+.log-time {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.empty-logs {
+  text-align: center;
+  padding: 20px 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
 }

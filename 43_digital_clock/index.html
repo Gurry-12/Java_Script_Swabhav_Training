@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="aurora" data-format="12">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chronos - Soothing Ambient Digital Clock</title>
+    <!-- Google Fonts for premium modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <!-- Lucide icons for beautiful interface icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Background blurred colorful blobs -->
+    <div class="background-decorations">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+
+    <div class="clock-container">
+      <!-- Main Dashboard Card -->
+      <div id="clock-card">
+        <!-- Top Toolbar -->
+        <div class="toolbar">
+          <div class="app-title">
+            <i data-lucide="clock" class="title-icon"></i>
+            <span>AeroTime</span>
+          </div>
+          
+          <div class="toolbar-actions">
+            <!-- Format Toggle (12h / 24h) -->
+            <button id="format-toggle" class="control-btn" title="Toggle 12h/24h Format">
+              <span id="format-label">12H</span>
+            </button>
+            
+            <!-- Ambiance Selector -->
+            <button id="theme-selector" class="icon-btn" title="Cycle Soothing Ambiance">
+              <i data-lucide="palette"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- SVG Circular Seconds Orbit -->
+        <div class="visual-clock-container">
+          <svg class="seconds-ring" viewBox="0 0 240 240">
+            <circle class="seconds-ring-track" cx="120" cy="120" r="105" />
+            <circle class="seconds-ring-indicator" cx="120" cy="120" r="105" id="seconds-indicator" />
+          </svg>
+          
+          <!-- Inner Clock Display Content -->
+          <div class="clock-content">
+            <!-- Hours and Minutes -->
+            <div id="time-display" class="time-digits">00:00</div>
+            
+            <!-- Seconds & AM/PM Row -->
+            <div class="seconds-row">
+              <span id="seconds-display" class="seconds-digits">00</span>
+              <span id="meridiem-display" class="meridiem-badge">AM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Date & Day Section -->
+        <div class="date-container">
+          <div id="day-display" class="day-text">Monday</div>
+          <div id="date-display" class="date-text">June 1, 2026</div>
+        </div>
+
+        <!-- Selected Theme Indicator Dot Grid -->
+        <div class="theme-indicator-dots">
+          <span class="dot active" id="dot-aurora" title="Midnight Aurora"></span>
+          <span class="dot" id="dot-sunset" title="Cyber Sunset"></span>
+          <span class="dot" id="dot-glow" title="Dawn Glow"></span>
+          <span class="dot" id="dot-mint" title="Forest Mint"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

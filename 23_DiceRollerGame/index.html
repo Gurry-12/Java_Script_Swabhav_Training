@@ -1,22 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dice Roller</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-    <div id="container">
-        <h1>Dice Roller</h1>
-        <label># of dice:</label>
-        <input type="number" id="numOfDice" value="1" min="1">
-        <button onclick="rollDice()">Roll Dice</button>
-        <div id="diceResult"></div>
-        <div id="diceImages"></div>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AeroRoll - Soothing 3D Dice Roller</title>
+    <!-- Google Fonts for premium modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <!-- Lucide icons for beautiful interface icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Background blurred colorful blobs -->
+    <div class="background-decorations">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
     </div>
 
+    <div class="game-container">
+      <!-- Main Dashboard Card -->
+      <div id="game-card">
+        <!-- Top Toolbar -->
+        <div class="toolbar">
+          <div class="app-title">
+            <i data-lucide="dices" class="title-icon"></i>
+            <span>AeroRoll 3D</span>
+          </div>
+          
+          <div class="toolbar-actions">
+            <!-- Theme Toggle -->
+            <button id="theme-toggle" class="icon-btn" title="Toggle Theme" aria-label="Toggle Theme">
+              <i data-lucide="sun" class="sun-icon"></i>
+              <i data-lucide="moon" class="moon-icon"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quantity Config Panel -->
+        <div class="config-panel">
+          <span class="panel-label">Dice Count (1 - 12)</span>
+          <div class="qty-stepper">
+            <button id="qty-dec" class="step-btn"><i data-lucide="minus"></i></button>
+            <input type="number" id="numOfDice" value="3" min="1" max="12" readonly />
+            <button id="qty-inc" class="step-btn"><i data-lucide="plus"></i></button>
+          </div>
+        </div>
+
+        <!-- Dynamic Statistics Row (Hidden initially) -->
+        <div id="stats-row" class="stats-row hidden">
+          <div class="stat-card">
+            <span class="stat-label">Total Sum</span>
+            <span id="sum-val" class="stat-val">--</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Average</span>
+            <span id="avg-val" class="stat-val">--</span>
+          </div>
+        </div>
+
+        <!-- Dice Results & Images Display Container -->
+        <div class="display-container">
+          <div id="diceResult" class="result-text">Ready to Roll!</div>
+          <div id="diceImages" class="dice-grid">
+            <!-- Dynamic dice img tags loaded here -->
+            <div class="dice-placeholder"><i data-lucide="sparkles"></i> Roll to begin</div>
+          </div>
+          <div id="validation-warning" class="warning-badge">Limit exceeded! Max 12 dice.</div>
+        </div>
+
+        <!-- Action Roll Button -->
+        <button id="roll-btn" onclick="rollDice()" class="roll-btn">
+          <i data-lucide="play" class="btn-icon"></i>
+          <span>Roll Dice</span>
+        </button>
+
+        <!-- Generation History Logs Sidebar -->
+        <div class="history-container">
+          <div class="history-header">
+            <span>Roll Log</span>
+            <button id="clear-history" class="clear-history-btn">Clear</button>
+          </div>
+          <div id="history-list" class="history-list">
+            <div class="empty-history">No runs logged yet</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+      lucide.createIcons();
+    </script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
