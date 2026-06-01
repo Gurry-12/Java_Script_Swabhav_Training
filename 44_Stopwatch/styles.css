@@ -1,0 +1,591 @@
+/* ==========================================================================
+   DESIGN SYSTEM - VARIABLES & TOKENS
+   ========================================================================== */
+:root {
+  /* Font Families */
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+  
+  /* Transition Speeds */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Theme Variables (Default) */
+[data-theme="dark"] {
+  --bg-gradient: radial-gradient(circle at top left, hsl(160, 30%, 10%), hsl(220, 35%, 7%));
+  --card-bg: rgba(15, 20, 24, 0.7);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 100px rgba(16, 185, 129, 0.06);
+  
+  /* Text Colors */
+  --text-primary: hsl(0, 0%, 95%);
+  --text-secondary: hsl(160, 10%, 75%);
+  --text-muted: hsl(160, 8%, 45%);
+  
+  /* Accents */
+  --accent-mint: hsl(150, 75%, 55%);
+  --accent-mint-glow: rgba(16, 185, 129, 0.3);
+  
+  --accent-coral: hsl(10, 80%, 65%);
+  --accent-coral-glow: rgba(239, 68, 68, 0.25);
+  
+  --accent-blue: hsl(205, 85%, 65%);
+  
+  /* UI Elements */
+  --btn-primary-bg: linear-gradient(135deg, hsl(150, 70%, 45%), hsl(160, 70%, 40%));
+  --btn-primary-hover: linear-gradient(135deg, hsl(150, 75%, 52%), hsl(160, 75%, 47%));
+  --btn-primary-glow: 0 8px 20px rgba(16, 185, 129, 0.3);
+  
+  --btn-stop-bg: linear-gradient(135deg, hsl(10, 75%, 58%), hsl(0, 75%, 53%));
+  --btn-stop-hover: linear-gradient(135deg, hsl(10, 80%, 63%), hsl(0, 80%, 58%));
+  --btn-stop-glow: 0 8px 20px rgba(239, 68, 68, 0.25);
+  
+  --btn-sec-bg: rgba(255, 255, 255, 0.05);
+  --btn-sec-hover: rgba(255, 255, 255, 0.1);
+  --btn-sec-text: hsl(0, 0%, 90%);
+  
+  --ring-track: rgba(255, 255, 255, 0.05);
+  --ring-indicator: linear-gradient(to right, hsl(150, 75%, 55%), hsl(175, 75%, 50%));
+  
+  --stat-bg: rgba(255, 255, 255, 0.02);
+  --lap-item-border: rgba(255, 255, 255, 0.04);
+  --lap-item-hover: rgba(255, 255, 255, 0.03);
+  
+  /* Decorative Blobs */
+  --blob-1-bg: hsl(155, 75%, 30%);
+  --blob-2-bg: hsl(220, 60%, 25%);
+}
+
+/* Light Theme Variables */
+[data-theme="light"] {
+  --bg-gradient: radial-gradient(circle at top left, hsl(160, 30%, 95%), hsl(220, 30%, 89%));
+  --card-bg: rgba(255, 255, 255, 0.65);
+  --card-border: rgba(0, 0, 0, 0.06);
+  --card-shadow: 0 30px 60px rgba(0, 0, 0, 0.08), 0 0 100px rgba(16, 185, 129, 0.03);
+  
+  /* Text Colors */
+  --text-primary: hsl(220, 30%, 15%);
+  --text-secondary: hsl(220, 15%, 45%);
+  --text-muted: hsl(220, 10%, 65%);
+  
+  /* Accents */
+  --accent-mint: hsl(150, 75%, 38%);
+  --accent-mint-glow: rgba(16, 185, 129, 0.15);
+  
+  --accent-coral: hsl(10, 75%, 53%);
+  --accent-coral-glow: rgba(239, 68, 68, 0.15);
+  
+  --accent-blue: hsl(205, 80%, 50%);
+  
+  /* UI Elements */
+  --btn-primary-bg: linear-gradient(135deg, hsl(150, 65%, 42%), hsl(160, 65%, 37%));
+  --btn-primary-hover: linear-gradient(135deg, hsl(150, 70%, 48%), hsl(160, 70%, 43%));
+  --btn-primary-glow: 0 8px 20px rgba(16, 185, 129, 0.2);
+  
+  --btn-stop-bg: linear-gradient(135deg, hsl(10, 70%, 53%), hsl(0, 70%, 48%));
+  --btn-stop-hover: linear-gradient(135deg, hsl(10, 75%, 58%), hsl(0, 75%, 53%));
+  --btn-stop-glow: 0 8px 20px rgba(239, 68, 68, 0.18);
+  
+  --btn-sec-bg: rgba(0, 0, 0, 0.03);
+  --btn-sec-hover: rgba(0, 0, 0, 0.07);
+  --btn-sec-text: hsl(220, 25%, 25%);
+  
+  --ring-track: rgba(0, 0, 0, 0.04);
+  --ring-indicator: linear-gradient(to right, hsl(150, 75%, 38%), hsl(175, 75%, 33%));
+  
+  --stat-bg: rgba(0, 0, 0, 0.01);
+  --lap-item-border: rgba(0, 0, 0, 0.03);
+  --lap-item-hover: rgba(0, 0, 0, 0.02);
+  
+  /* Decorative Blobs */
+  --blob-1-bg: hsl(155, 80%, 78%);
+  --blob-2-bg: hsl(220, 80%, 75%);
+}
+
+/* ==========================================================================
+   GLOBAL RESET & BODY LAYOUT
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  overflow: hidden;
+  position: relative;
+  transition: background var(--transition-slow);
+}
+
+/* Background Glowing Ambient Blobs */
+.background-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  width: 40vw;
+  height: 40vw;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.3;
+  transition: background var(--transition-slow);
+}
+
+.blob-1 {
+  background: var(--blob-1-bg);
+  top: -10%;
+  left: -10%;
+}
+
+.blob-2 {
+  background: var(--blob-2-bg);
+  bottom: -10%;
+  right: -10%;
+}
+
+/* ==========================================================================
+   STOPWATCH CONTAINER & CARD
+   ========================================================================== */
+.stopwatch-container {
+  z-index: 1;
+  position: relative;
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+#stopwatch-card {
+  width: 100%;
+  background: var(--card-bg);
+  backdrop-filter: blur(25px) saturate(120%);
+  -webkit-backdrop-filter: blur(25px) saturate(120%);
+  border: 1px solid var(--card-border);
+  border-radius: 35px;
+  box-shadow: var(--card-shadow);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow: hidden;
+  position: relative;
+  transition: background var(--transition-slow), border var(--transition-slow), box-shadow var(--transition-slow);
+}
+
+/* ==========================================================================
+   TOOLBAR SECTION (HEADER)
+   ========================================================================== */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.title-icon {
+  width: 22px;
+  height: 22px;
+  color: var(--accent-mint);
+  animation: pulse-ring 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0px var(--accent-mint)); }
+  50% { transform: scale(1.05); filter: drop-shadow(0 0 5px var(--accent-mint)); }
+}
+
+.toolbar-actions {
+  display: flex;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.icon-btn:hover {
+  background: var(--btn-sec-hover);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.icon-btn:active {
+  transform: scale(0.95);
+}
+
+.icon-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Theme Toggle Icons */
+#theme-toggle .moon-icon {
+  display: none;
+}
+
+[data-theme="light"] #theme-toggle .sun-icon {
+  display: none;
+}
+
+[data-theme="light"] #theme-toggle .moon-icon {
+  display: block;
+}
+
+/* ==========================================================================
+   SVG CIRCULAR TIMING RING
+   ========================================================================== */
+.visual-timer-container {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg); /* Start at 12 o'clock */
+}
+
+.progress-ring-track {
+  fill: transparent;
+  stroke: var(--ring-track);
+  stroke-width: 6px;
+  transition: stroke var(--transition-slow);
+}
+
+.progress-ring-indicator {
+  fill: transparent;
+  stroke: var(--accent-mint);
+  stroke-width: 6px;
+  stroke-linecap: round;
+  /* Circumference: 2 * PI * r = 2 * 3.14159 * 95 = 596.9 */
+  stroke-dasharray: 596.9;
+  stroke-dashoffset: 596.9;
+  transition: stroke-dashoffset 0.05s linear, stroke var(--transition-slow);
+  filter: drop-shadow(0 0 4px var(--accent-mint-glow));
+}
+
+/* Timer text positioned perfectly in circle center */
+.timer-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.timer-digits {
+  font-family: var(--font-mono);
+  font-size: 2.3rem;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+  line-height: 1;
+  font-feature-settings: "tnum";
+}
+
+.timer-ms {
+  font-family: var(--font-mono);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--accent-mint);
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   MINI STATISTICS BAR
+   ========================================================================== */
+.stats-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: all var(--transition-normal);
+  max-height: 80px;
+}
+
+.stats-bar.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+  max-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.stat-card {
+  background: var(--stat-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+}
+
+.stat-val {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   CONTROLS BUTTONS SECTION
+   ========================================================================== */
+.controls-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 2px 0;
+}
+
+.control-btn {
+  height: 52px;
+  border-radius: 20px;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  transition: background var(--transition-fast), color var(--transition-fast), 
+              box-shadow var(--transition-fast), transform var(--transition-fast),
+              opacity var(--transition-fast);
+}
+
+.control-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.control-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Primary Button (Start/Stop) */
+.primary-btn.start-state {
+  background: var(--btn-primary-bg);
+  color: hsl(0, 0%, 100%);
+}
+
+.primary-btn.start-state:hover:not(:disabled) {
+  background: var(--btn-primary-hover);
+  box-shadow: var(--btn-primary-glow);
+  transform: translateY(-2px);
+}
+
+.primary-btn.stop-state {
+  background: var(--btn-stop-bg);
+  color: hsl(0, 0%, 100%);
+}
+
+.primary-btn.stop-state:hover:not(:disabled) {
+  background: var(--btn-stop-hover);
+  box-shadow: var(--btn-stop-glow);
+  transform: translateY(-2px);
+}
+
+.primary-btn:active:not(:disabled) {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: none;
+}
+
+/* Secondary Button (Lap/Reset) */
+.secondary-btn {
+  background: var(--btn-sec-bg);
+  color: var(--btn-sec-text);
+  border: 1px solid var(--card-border);
+}
+
+.secondary-btn:hover:not(:disabled) {
+  background: var(--btn-sec-hover);
+  transform: translateY(-2px);
+}
+
+.secondary-btn:active:not(:disabled) {
+  transform: translateY(1px) scale(0.97);
+}
+
+/* Toggle play/pause icon states */
+.primary-btn.start-state .pause-icon {
+  display: none;
+}
+.primary-btn.stop-state .play-icon {
+  display: none;
+}
+
+/* ==========================================================================
+   LAPS LIST TABLE SECTION
+   ========================================================================== */
+.laps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--card-border);
+  padding-top: 18px;
+}
+
+.laps-header {
+  display: grid;
+  grid-template-columns: 0.8fr 1.6fr 1.6fr;
+  padding: 0 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.laps-header :last-child {
+  text-align: right;
+}
+
+.laps-list {
+  max-height: 180px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 2px;
+}
+
+/* Laps list scrollbar customization */
+.laps-list::-webkit-scrollbar {
+  width: 4px;
+}
+.laps-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.laps-list::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 10px;
+}
+
+.lap-item {
+  display: grid;
+  grid-template-columns: 0.8fr 1.6fr 1.6fr;
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: var(--stat-bg);
+  border: 1px solid var(--lap-item-border);
+  font-size: 0.95rem;
+  align-items: center;
+  transition: background var(--transition-fast), border var(--transition-fast);
+  animation: slide-in 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lap-item:hover {
+  background: var(--lap-item-hover);
+}
+
+.lap-item :last-child {
+  text-align: right;
+  font-weight: 500;
+}
+
+.lap-num {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.lap-split, .lap-overall {
+  font-family: var(--font-mono);
+}
+
+.empty-laps {
+  text-align: center;
+  padding: 30px 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* Animations for lap item list */
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stats Highlights */
+.lap-item.fastest {
+  border-color: rgba(16, 185, 129, 0.2);
+  background: rgba(16, 185, 129, 0.05);
+}
+.lap-item.fastest .lap-split {
+  color: var(--accent-mint);
+  font-weight: 600;
+}
+
+.lap-item.slowest {
+  border-color: rgba(239, 68, 68, 0.15);
+  background: rgba(239, 68, 68, 0.04);
+}
+.lap-item.slowest .lap-split {
+  color: var(--accent-coral);
+  font-weight: 600;
+}

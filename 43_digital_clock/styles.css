@@ -1,0 +1,422 @@
+/* ==========================================================================
+   DESIGN SYSTEM - VARIABLES & TOKENS
+   ========================================================================== */
+:root {
+  /* Font Families */
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+  
+  /* Transition Speeds */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 1. Midnight Aurora Theme Variables */
+[data-theme="aurora"] {
+  --bg-gradient: radial-gradient(circle at top left, hsl(200, 45%, 11%), hsl(230, 45%, 8%));
+  --card-bg: rgba(18, 24, 38, 0.7);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 100px rgba(45, 212, 191, 0.08);
+  
+  --text-primary: hsl(0, 0%, 95%);
+  --text-secondary: hsl(190, 15%, 75%);
+  --text-muted: hsl(190, 10%, 45%);
+  
+  --accent: hsl(172, 75%, 50%);
+  --accent-glow: rgba(45, 212, 191, 0.3);
+  
+  --ring-track: rgba(255, 255, 255, 0.04);
+  --btn-bg: rgba(255, 255, 255, 0.04);
+  --btn-hover: rgba(255, 255, 255, 0.09);
+  
+  --blob-1-bg: hsl(180, 80%, 30%);
+  --blob-2-bg: hsl(230, 70%, 25%);
+}
+
+/* 2. Cyber Sunset Theme Variables */
+[data-theme="sunset"] {
+  --bg-gradient: radial-gradient(circle at top left, hsl(290, 35%, 10%), hsl(330, 45%, 8%));
+  --card-bg: rgba(26, 18, 28, 0.7);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 100px rgba(236, 72, 153, 0.08);
+  
+  --text-primary: hsl(0, 0%, 95%);
+  --text-secondary: hsl(320, 15%, 75%);
+  --text-muted: hsl(320, 10%, 45%);
+  
+  --accent: hsl(330, 85%, 60%);
+  --accent-glow: rgba(236, 72, 153, 0.3);
+  
+  --ring-track: rgba(255, 255, 255, 0.04);
+  --btn-bg: rgba(255, 255, 255, 0.04);
+  --btn-hover: rgba(255, 255, 255, 0.09);
+  
+  --blob-1-bg: hsl(310, 80%, 25%);
+  --blob-2-bg: hsl(340, 70%, 25%);
+}
+
+/* 3. Dawn Glow Theme Variables */
+[data-theme="glow"] {
+  --bg-gradient: radial-gradient(circle at top left, hsl(20, 30%, 12%), hsl(45, 30%, 9%));
+  --card-bg: rgba(28, 22, 18, 0.75);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 100px rgba(245, 158, 11, 0.08);
+  
+  --text-primary: hsl(0, 0%, 95%);
+  --text-secondary: hsl(30, 15%, 75%);
+  --text-muted: hsl(30, 10%, 45%);
+  
+  --accent: hsl(38, 90%, 55%);
+  --accent-glow: rgba(245, 158, 11, 0.3);
+  
+  --ring-track: rgba(255, 255, 255, 0.04);
+  --btn-bg: rgba(255, 255, 255, 0.04);
+  --btn-hover: rgba(255, 255, 255, 0.09);
+  
+  --blob-1-bg: hsl(20, 80%, 25%);
+  --blob-2-bg: hsl(45, 80%, 22%);
+}
+
+/* 4. Forest Mint Theme Variables */
+[data-theme="mint"] {
+  --bg-gradient: radial-gradient(circle at top left, hsl(140, 20%, 9%), hsl(170, 25%, 8%));
+  --card-bg: rgba(18, 26, 22, 0.7);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 100px rgba(16, 185, 129, 0.08);
+  
+  --text-primary: hsl(0, 0%, 95%);
+  --text-secondary: hsl(150, 15%, 75%);
+  --text-muted: hsl(150, 10%, 45%);
+  
+  --accent: hsl(150, 75%, 50%);
+  --accent-glow: rgba(16, 185, 129, 0.3);
+  
+  --ring-track: rgba(255, 255, 255, 0.04);
+  --btn-bg: rgba(255, 255, 255, 0.04);
+  --btn-hover: rgba(255, 255, 255, 0.09);
+  
+  --blob-1-bg: hsl(140, 70%, 22%);
+  --blob-2-bg: hsl(175, 70%, 22%);
+}
+
+/* ==========================================================================
+   GLOBAL RESET & BODY LAYOUT
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  overflow: hidden;
+  position: relative;
+  transition: background var(--transition-slow);
+}
+
+/* Background Glowing Ambient Blobs */
+.background-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  width: 40vw;
+  height: 40vw;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.35;
+  transition: background var(--transition-slow);
+}
+
+.blob-1 {
+  background: var(--blob-1-bg);
+  top: -10%;
+  left: -10%;
+}
+
+.blob-2 {
+  background: var(--blob-2-bg);
+  bottom: -10%;
+  right: -10%;
+}
+
+/* ==========================================================================
+   CLOCK CONTAINER & GLASS CARD
+   ========================================================================== */
+.clock-container {
+  z-index: 1;
+  position: relative;
+  padding: 20px;
+  width: 100%;
+  max-width: 375px;
+}
+
+#clock-card {
+  width: 100%;
+  background: var(--card-bg);
+  backdrop-filter: blur(25px) saturate(120%);
+  -webkit-backdrop-filter: blur(25px) saturate(120%);
+  border: 1px solid var(--card-border);
+  border-radius: 35px;
+  box-shadow: var(--card-shadow);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow: hidden;
+  position: relative;
+  transition: background var(--transition-slow), border var(--transition-slow), box-shadow var(--transition-slow);
+}
+
+/* ==========================================================================
+   TOOLBAR SECTION (HEADER)
+   ========================================================================== */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.title-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--accent);
+  transition: color var(--transition-slow);
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 12h/24h toggle pill button */
+.control-btn {
+  background: var(--btn-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all var(--transition-fast);
+}
+
+.control-btn:hover {
+  background: var(--btn-hover);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.control-btn:active {
+  transform: scale(0.95);
+}
+
+/* Icon Buttons (Theme selector) */
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.icon-btn:hover {
+  background: var(--btn-hover);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.icon-btn:active {
+  transform: scale(0.95);
+}
+
+.icon-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==========================================================================
+   SVG CIRCULAR SECONDS ORBIT
+   ========================================================================== */
+.visual-clock-container {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  margin: 10px auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.seconds-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg); /* Start from 12 o'clock */
+}
+
+.seconds-ring-track {
+  fill: transparent;
+  stroke: var(--ring-track);
+  stroke-width: 5px;
+  transition: stroke var(--transition-slow);
+}
+
+.seconds-ring-indicator {
+  fill: transparent;
+  stroke: var(--accent);
+  stroke-width: 5px;
+  stroke-linecap: round;
+  /* Circumference: 2 * PI * r = 2 * 3.14159 * 105 = 659.7 */
+  stroke-dasharray: 659.7;
+  stroke-dashoffset: 659.7;
+  transition: stroke-dashoffset 0.1s linear, stroke var(--transition-slow);
+  filter: drop-shadow(0 0 5px var(--accent-glow));
+}
+
+/* Clock Displays in Circle Center */
+.clock-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.time-digits {
+  font-family: var(--font-mono);
+  font-size: 3.4rem;
+  font-weight: 500;
+  letter-spacing: -1.5px;
+  color: var(--text-primary);
+  line-height: 1;
+  font-feature-settings: "tnum";
+}
+
+.seconds-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.seconds-digits {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--accent);
+  transition: color var(--transition-slow);
+}
+
+.meridiem-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  background: var(--btn-bg);
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px solid var(--card-border);
+  letter-spacing: 0.5px;
+  transition: background var(--transition-slow), border var(--transition-slow);
+}
+
+/* ==========================================================================
+   DATE & WEEKDAY ROW
+   ========================================================================== */
+.date-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  border-top: 1px solid var(--card-border);
+  padding-top: 18px;
+  text-align: center;
+  margin-bottom: 2px;
+  transition: border var(--transition-slow);
+}
+
+.day-text {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.25px;
+}
+
+.date-text {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   THEME DOTS INDICATOR PAGINATION
+   ========================================================================== */
+.theme-indicator-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.dot:hover {
+  background: var(--text-secondary);
+}
+
+.dot.active {
+  background: var(--accent);
+  transform: scale(1.3);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+#dot-aurora.active { --accent: hsl(172, 75%, 50%); }
+#dot-sunset.active { --accent: hsl(330, 85%, 60%); }
+#dot-glow.active { --accent: hsl(38, 90%, 55%); }
+#dot-mint.active { --accent: hsl(150, 75%, 50%); }

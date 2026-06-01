@@ -1,58 +1,122 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" class="thermal-neutral">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Temprature converter</title>
+    <title>AeroTemp - Ambient Thermal Converter</title>
+    <!-- Google Fonts for premium modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <!-- Lucide icons for beautiful interface icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
   </head>
   <body>
-    <form>
-      <h1>Temperature Converter</h1>
-      <input type="number" id="textBox" value="0" /><br />
+    <!-- Background blurred colorful blobs (Fire & Ice concepts) -->
+    <div class="background-decorations">
+      <div class="blob blob-fire" id="blob-fire"></div>
+      <div class="blob blob-ice" id="blob-ice"></div>
+    </div>
 
-      <input type="radio" id="celsiusToFahrenheit" name="unit" />
-      <label for="celsiusToFahrenheit"
-        >Celsius <i class="fa-solid fa-arrow-right"></i> Fahrenheit</label
-      ><br />
+    <div class="converter-container">
+      <!-- Main Dashboard Card -->
+      <div id="converter-card">
+        <!-- Top Toolbar -->
+        <div class="toolbar">
+          <div class="app-title">
+            <i data-lucide="thermometer" class="title-icon"></i>
+            <span>AeroTemp</span>
+          </div>
+          
+          <div class="toolbar-actions">
+            <!-- Theme Toggle -->
+            <button id="theme-toggle" class="icon-btn" title="Toggle Theme" aria-label="Toggle Theme">
+              <i data-lucide="sun" class="sun-icon"></i>
+              <i data-lucide="moon" class="moon-icon"></i>
+            </button>
+          </div>
+        </div>
 
-      <input type="radio" id="celsiusToKelvin" name="unit" />
-      <label for="celsiusToKelvin"
-        >Celsius <i class="fa-solid fa-arrow-right"></i> Kelvin</label
-      ><br />
+        <!-- Input Box Container -->
+        <div class="input-panel">
+          <span class="panel-label">Temperature Value</span>
+          <input type="number" id="textBox" value="0" placeholder="Enter degrees" />
+        </div>
 
-      <input type="radio" id="fahrenheitToCelsius" name="unit" />
-      <label for="fahrenheitToCelsius"
-        >Fahrenheit <i class="fa-solid fa-arrow-right"></i> Celsius</label
-      ><br />
+        <!-- Units Selector Grid (From -> Swap -> To) -->
+        <div class="selector-grid">
+          <div class="select-group">
+            <label for="fromUnit">From</label>
+            <select id="fromUnit" class="unit-select">
+              <option value="C" selected>Celsius (°C)</option>
+              <option value="F">Fahrenheit (°F)</option>
+              <option value="K">Kelvin (K)</option>
+            </select>
+          </div>
+          
+          <button id="swap-units-btn" class="swap-btn" title="Swap Temperature Units">
+            <i data-lucide="arrow-left-right"></i>
+          </button>
+          
+          <div class="select-group">
+            <label for="toUnit">To</label>
+            <select id="toUnit" class="unit-select">
+              <option value="C">Celsius (°C)</option>
+              <option value="F" selected>Fahrenheit (°F)</option>
+              <option value="K">Kelvin (K)</option>
+            </select>
+          </div>
+        </div>
 
-      <input type="radio" id="fahrenheitToKelvin" name="unit" />
-      <label for="fahrenheitToKelvin"
-        >Fahrenheit <i class="fa-solid fa-arrow-right"></i> Kelvin</label
-      ><br />
+        <!-- Visual Mercury Thermometer Scale -->
+        <div class="thermometer-container">
+          <div class="thermometer-header">
+            <span class="scale-label">Thermal Scale</span>
+            <span id="temp-status" class="status-label">Neutral</span>
+          </div>
+          <div class="mercury-tube">
+            <div class="mercury-fluid" id="mercury-fluid"></div>
+            <!-- Indicator markers -->
+            <div class="marker freezing" title="Freezing (0°C)"></div>
+            <div class="marker boiling" title="Boiling (100°C)"></div>
+          </div>
+        </div>
 
-      <input type="radio" id="kelvinToCelsius" name="unit" />
-      <label for="kelvinToCelsius"
-        >Kelvin <i class="fa-solid fa-arrow-right"></i> Celsius</label
-      ><br />
+        <!-- Conversion Output Result display -->
+        <div class="result-panel">
+          <p id="result" class="result-digits">32.00°F</p>
+        </div>
 
-      <input type="radio" id="kelvinToFahrenheit" name="unit" />
-      <label for="kelvinToFahrenheit"
-        >Kelvin <i class="fa-solid fa-arrow-right"></i> Fahrenheit</label
-      ><br />
+        <!-- Quick Standard Presets Grid -->
+        <div class="presets-section">
+          <span class="presets-label">Quick Presets</span>
+          <div class="presets-grid">
+            <button class="preset-card" data-val="0" data-unit="C" title="Freezing Point of Water">
+              <span class="preset-title">Freezing</span>
+              <span class="preset-value">0°C</span>
+            </button>
+            <button class="preset-card" data-val="21" data-unit="C" title="Standard Room Temperature">
+              <span class="preset-title">Room Temp</span>
+              <span class="preset-value">21°C</span>
+            </button>
+            <button class="preset-card" data-val="37" data-unit="C" title="Standard Human Body Temperature">
+              <span class="preset-title">Body Temp</span>
+              <span class="preset-value">37°C</span>
+            </button>
+            <button class="preset-card" data-val="100" data-unit="C" title="Boiling Point of Water">
+              <span class="preset-title">Boiling</span>
+              <span class="preset-value">100°C</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <button type="button" onclick="convert()">submit</button>
-      <p id="result"></p>
-    </form>
-
+    <!-- Initialize Lucide Icons -->
+    <script>
+      lucide.createIcons();
+    </script>
     <script src="script.js"></script>
   </body>
 </html>
->

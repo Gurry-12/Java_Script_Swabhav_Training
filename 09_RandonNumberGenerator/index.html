@@ -1,16 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Number Generator </title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <button id="myButton">roll</button><br>
-    <label for="" id="label1" class="label"></label><br>
-    <label for="" id="label2" class="label"></label><br>
-    <label for="" id="label3" class="label"></label><br>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AeroRoll - Soothing Random Number Generator</title>
+    <!-- Google Fonts for premium modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <!-- Lucide icons for beautiful interface icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Background blurred colorful blobs -->
+    <div class="background-decorations">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+
+    <div class="generator-container">
+      <!-- Main Dashboard Card -->
+      <div id="generator-card">
+        <!-- Top Toolbar -->
+        <div class="toolbar">
+          <div class="app-title">
+            <i data-lucide="dices" class="title-icon"></i>
+            <span>AeroRoll</span>
+          </div>
+          
+          <div class="toolbar-actions">
+            <!-- Theme Toggle -->
+            <button id="theme-toggle" class="icon-btn" title="Toggle Theme" aria-label="Toggle Theme">
+              <i data-lucide="sun" class="sun-icon"></i>
+              <i data-lucide="moon" class="moon-icon"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Range Configurations Grid -->
+        <div class="config-section">
+          <div class="range-grid">
+            <div class="input-group">
+              <label for="min-val">Min Range</label>
+              <input type="number" id="min-val" value="1" />
+            </div>
+            <div class="input-group">
+              <label for="max-val">Max Range</label>
+              <input type="number" id="max-val" value="100" />
+            </div>
+          </div>
+          
+          <!-- Advanced Controls Row -->
+          <div class="controls-row">
+            <!-- Quantity Selector -->
+            <div class="qty-control">
+              <span class="ctrl-label">Quantity</span>
+              <div class="qty-selector">
+                <button class="qty-btn" data-qty="1">1</button>
+                <button class="qty-btn" data-qty="2">2</button>
+                <button class="qty-btn active" data-qty="3">3</button>
+                <button class="qty-btn" data-qty="4">4</button>
+                <button class="qty-btn" data-qty="5">5</button>
+              </div>
+            </div>
+            
+            <!-- Unique Toggle -->
+            <div class="unique-control">
+              <label class="toggle-switch">
+                <input type="checkbox" id="unique-toggle" checked />
+                <span class="slider"></span>
+              </label>
+              <span class="ctrl-label">Unique Only</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Output Slots Grid -->
+        <div class="display-container">
+          <div id="slots-grid" class="slots-grid qty-3">
+            <div class="slot-badge" id="slot-1">
+              <span id="label1" class="label">--</span>
+            </div>
+            <div class="slot-badge" id="slot-2">
+              <span id="label2" class="label">--</span>
+            </div>
+            <div class="slot-badge" id="slot-3">
+              <span id="label3" class="label">--</span>
+            </div>
+            <div class="slot-badge" id="slot-4">
+              <span id="label4" class="label">--</span>
+            </div>
+            <div class="slot-badge" id="slot-5">
+              <span id="label5" class="label">--</span>
+            </div>
+          </div>
+          <div id="validation-warning" class="warning-badge">Range too small for unique digits!</div>
+        </div>
+
+        <!-- Action Roll Button -->
+        <button id="myButton" class="roll-btn">
+          <i data-lucide="dices" class="roll-icon"></i>
+          <span>Roll Numbers</span>
+        </button>
+
+        <!-- Generation History Sidebar -->
+        <div class="history-container">
+          <div class="history-header">
+            <span>Roll History</span>
+            <button id="clear-history" class="clear-history-btn">Clear</button>
+          </div>
+          <div id="history-list" class="history-list">
+            <div class="empty-history">No rolls generated yet</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+      lucide.createIcons();
+    </script>
     <script src="index.js"></script>
-</body>
+  </body>
 </html>

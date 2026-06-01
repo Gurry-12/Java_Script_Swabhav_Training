@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soothing Modern Calculator</title>
+    <!-- Google Fonts for premium modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Lucide icons for beautiful interface icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background-decorations">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+
+    <div class="calculator-container">
+      <!-- Calculator App Card -->
+      <div id="calculator">
+        <!-- Top Toolbar -->
+        <div class="toolbar">
+          <div class="app-title">
+            <i data-lucide="calculator" class="title-icon"></i>
+            <span>CalcuLyfe</span>
+          </div>
+          <div class="toolbar-actions">
+            <button
+              id="theme-toggle"
+              class="icon-btn"
+              title="Toggle Theme"
+              aria-label="Toggle Theme"
+            >
+              <i data-lucide="sun" class="sun-icon"></i>
+              <i data-lucide="moon" class="moon-icon"></i>
+            </button>
+            <button
+              id="history-toggle"
+              class="icon-btn"
+              title="Show History"
+              aria-label="Show History"
+            >
+              <i data-lucide="history"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dual Screen Display -->
+        <div class="display-container">
+          <div id="expression-display" class="expression-text"></div>
+          <div class="input-row">
+            <span class="equals-indicator" id="equals-indicator">=</span>
+            <input id="display" type="text" value="0" readonly />
+          </div>
+        </div>
+
+        <!-- Keys Grid -->
+        <div id="keys">
+          <!-- Row 1: Actions -->
+          <button
+            id="btn-clear"
+            onclick="clearDisplay()"
+            class="action-btn"
+            title="All Clear"
+          >
+            AC
+          </button>
+          <button
+            id="btn-backspace"
+            onclick="backspace()"
+            class="action-btn"
+            title="Backspace"
+          >
+            <i data-lucide="delete"></i>
+          </button>
+          <button
+            id="btn-percent"
+            onclick="appendToDisplay('%')"
+            class="action-btn"
+            title="Percentage"
+          >
+            %
+          </button>
+          <button
+            id="btn-divide"
+            onclick="appendToDisplay('/')"
+            class="operator-btn"
+            title="Divide"
+          >
+            ÷
+          </button>
+
+          <!-- Row 2 -->
+          <button id="btn-7" onclick="appendToDisplay('7')">7</button>
+          <button id="btn-8" onclick="appendToDisplay('8')">8</button>
+          <button id="btn-9" onclick="appendToDisplay('9')">9</button>
+          <button
+            id="btn-multiply"
+            onclick="appendToDisplay('*')"
+            class="operator-btn"
+            title="Multiply"
+          >
+            ×
+          </button>
+
+          <!-- Row 3 -->
+          <button id="btn-4" onclick="appendToDisplay('4')">4</button>
+          <button id="btn-5" onclick="appendToDisplay('5')">5</button>
+          <button id="btn-6" onclick="appendToDisplay('6')">6</button>
+          <button
+            id="btn-subtract"
+            onclick="appendToDisplay('-')"
+            class="operator-btn"
+            title="Subtract"
+          >
+            −
+          </button>
+
+          <!-- Row 4 -->
+          <button id="btn-1" onclick="appendToDisplay('1')">1</button>
+          <button id="btn-2" onclick="appendToDisplay('2')">2</button>
+          <button id="btn-3" onclick="appendToDisplay('3')">3</button>
+          <button
+            id="btn-add"
+            onclick="appendToDisplay('+')"
+            class="operator-btn"
+            title="Add"
+          >
+            +
+          </button>
+
+          <!-- Row 5 -->
+          <button
+            id="btn-toggle-sign"
+            onclick="toggleSign()"
+            class="special-btn"
+            title="Toggle Positive/Negative"
+          >
+            ±
+          </button>
+          <button id="btn-0" onclick="appendToDisplay('0')">0</button>
+          <button id="btn-dot" onclick="appendToDisplay('.')">.</button>
+          <button
+            id="btn-equals"
+            onclick="calculate()"
+            class="equals-btn"
+            title="Calculate"
+          >
+            =
+          </button>
+        </div>
+
+        <!-- History Drawer -->
+        <div id="history-drawer" class="history-drawer">
+          <div class="drawer-header">
+            <h3>Calculation History</h3>
+            <button
+              id="close-history"
+              class="icon-btn"
+              aria-label="Close History"
+            >
+              <i data-lucide="x"></i>
+            </button>
+          </div>
+          <div id="history-list" class="history-list">
+            <!-- Dynamic entries loaded here -->
+            <div class="empty-history">No history yet</div>
+          </div>
+          <div class="drawer-footer">
+            <button id="clear-history-btn" class="clear-all-btn">
+              <i data-lucide="trash-2"></i> Clear History
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
